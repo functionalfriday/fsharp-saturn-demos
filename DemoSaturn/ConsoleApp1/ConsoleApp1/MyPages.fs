@@ -8,3 +8,8 @@ module Views =
     div [] [
         h2 [] [rawText "Hello from Saturn!"]
     ]
+    
+  let about =
+    div [] [
+        h2 [] [rawText "About!"]
+    ]
