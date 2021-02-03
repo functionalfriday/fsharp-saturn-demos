@@ -1,7 +1,7 @@
 namespace Hello
 
 open Saturn
-open Giraffe.ResponseWriters
+open Giraffe
 
 module Controller =
     let indexAction =

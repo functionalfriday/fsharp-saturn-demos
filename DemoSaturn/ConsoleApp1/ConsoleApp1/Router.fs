@@ -2,7 +2,6 @@ module Router
 
 open Saturn
 open Giraffe.Core
-open Giraffe.ResponseWriters
 open UserViews
 open Users
 
@@ -14,16 +13,16 @@ let browser = pipeline {
 }
 
 let defaultView = router {
-    get "/" (redirectTo false "/")
+    get "/" (htmlView Hello.Views.index)
     get "/index.html" (redirectTo false "/")
     get "/default.html" (redirectTo false "/")
-    get "/signin-github" (redirectTo false "/members-only/")
+    get "/signin-github" (redirectTo false "/members-only")
 }
 
 let loggedInView = router {
     pipe_through loggedIn
 
-    get "/" (htmlView UserPage.layout)
+    get "" (htmlView UserPage.layout)
     get "/admin" (isAdmin >=> htmlView AdminPage.layout)
 }
 

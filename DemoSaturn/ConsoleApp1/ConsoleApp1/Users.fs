@@ -10,11 +10,11 @@ let matchUpUsers : HttpHandler = fun next ctx ->
         ctx.User.Claims |> Seq.exists (fun claim ->
             claim.Issuer = "GitHub" && claim.Type = ClaimTypes.Name && claim.Value = "Patrick Drechsler")
     if isAdmin then
-        ctx.User.AddIdentity(new ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
+        ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
 
 let loggedIn = pipeline {
-    requires_authentication (Giraffe.Auth.challenge "GitHub")
+    requires_authentication (Auth.challenge "GitHub")
     plug matchUpUsers
 }
 
