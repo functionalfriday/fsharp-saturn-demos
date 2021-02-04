@@ -14,4 +14,12 @@ module UserPage =
     let view = [
         h1 [] [rawText "I'm logged user"]
     ]
-    let layout = h1 [] [rawText "admin/user"]
+    let layout =
+        html [] [
+            head [] [
+                link [_rel "stylesheet"; _href "assets/mycustom.css"]                
+            ]
+            body [] [
+                h1 [] [rawText "admin/user"]    
+            ]
+        ]

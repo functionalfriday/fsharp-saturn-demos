@@ -20,6 +20,7 @@ let app: Microsoft.Extensions.Hosting.IHostBuilder = application {
     use_router (Router.browserRouter)
     use_developer_exceptions
     memory_cache
+    use_static "static" // TODO improve documentation
     
     logging configureLog
 

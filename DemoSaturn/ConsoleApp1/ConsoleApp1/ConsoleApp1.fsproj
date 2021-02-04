@@ -18,4 +18,10 @@
       <PackageReference Include="Saturn" Version="0.14.1" />
       <PackageReference Include="Saturn.Extensions.Authorization" Version="0.14.1" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="static\assets\mycustom.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
 </Project>
