@@ -27,12 +27,11 @@ let app: Microsoft.Extensions.Hosting.IHostBuilder = application {
     use_router (Router.browserRouter)
     use_developer_exceptions
     memory_cache
-    // use_cookie_policy (cpo)
-
+    
     logging configureLog
 
     force_ssl
-
+    
     use_github_oauth "2dfd0060878f3db64d90" "df1465798ffc37075bf16f6a92c8688d818eaa36" "/signin-github" [("login", "githubUsername"); ("name", "fullName")]
 }
 
