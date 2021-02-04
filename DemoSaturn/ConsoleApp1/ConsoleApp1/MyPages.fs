@@ -1,7 +1,6 @@
 namespace Hello
 
-open Giraffe.ViewEngine
-open Saturn
+open Giraffe.GiraffeViewEngine
 
 module Views =
   let index =

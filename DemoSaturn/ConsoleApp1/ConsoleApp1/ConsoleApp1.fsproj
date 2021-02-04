@@ -15,17 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Giraffe.ViewEngine" Version="1.3.0" />
-      <PackageReference Include="Saturn" Version="0.15.0-preview03" />
-      <PackageReference Include="Saturn.Extensions.Authorization" Version="0.15.0-preview03" />
-    </ItemGroup>
-
-    
-
-<!--
-    <ItemGroup>
-      <PackageReference Include="Saturn" Version="0.14.1" /> 
+      <PackageReference Include="Saturn" Version="0.14.1" />
       <PackageReference Include="Saturn.Extensions.Authorization" Version="0.14.1" />
     </ItemGroup>
--->
 </Project>

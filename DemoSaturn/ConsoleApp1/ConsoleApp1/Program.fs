@@ -1,11 +1,9 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
 open Saturn
-open Giraffe
 open Microsoft.AspNetCore.Builder
 open Microsoft.AspNetCore.CookiePolicy
 open Microsoft.AspNetCore.Http
-open Microsoft.AspNetCore.Authentication.OAuth
 open Microsoft.Extensions.Logging
 
 let endpointPipe = pipeline {
@@ -35,10 +33,8 @@ let app: Microsoft.Extensions.Hosting.IHostBuilder = application {
 
     force_ssl
 
-    use_github_oauth "21ac75fb5fc9aea4385b" "05eff61cbd57b24e02bce9cbfa771f2d177bd814" "/signin-github" [("login", "githubUsername"); ("name", "fullName")]
+    use_github_oauth "2dfd0060878f3db64d90" "df1465798ffc37075bf16f6a92c8688d818eaa36" "/signin-github" [("login", "githubUsername"); ("name", "fullName")]
 }
-
-
 
 [<EntryPoint>]
 let main argv =

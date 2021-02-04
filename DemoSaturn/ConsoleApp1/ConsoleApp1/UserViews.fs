@@ -1,7 +1,7 @@
 
 module UserViews
 
-open Giraffe.ViewEngine
+open Giraffe.GiraffeViewEngine
 
 
 module AdminPage =
