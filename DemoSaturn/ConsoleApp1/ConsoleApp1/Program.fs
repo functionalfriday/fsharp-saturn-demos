@@ -11,15 +11,8 @@ let endpointPipe = pipeline {
     plug requestId
 }
 
-let  cpo: CookiePolicyOptions = 
-    CookiePolicyOptions(
-        HttpOnly = HttpOnlyPolicy.Always,
-        Secure = CookieSecurePolicy.Always,
-        MinimumSameSitePolicy = SameSiteMode.None
-    )
-
 let configureLog = fun (logConfig : ILoggingBuilder) ->
-    logConfig.SetMinimumLevel(LogLevel.Trace) |> ignore
+    logConfig.SetMinimumLevel(LogLevel.Information) |> ignore
 
 let app: Microsoft.Extensions.Hosting.IHostBuilder = application {
     pipe_through endpointPipe
