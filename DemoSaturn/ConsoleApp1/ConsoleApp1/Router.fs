@@ -14,7 +14,7 @@ let browser = pipeline {
 }
 
 let defaultView = router {
-    get "/" (htmlView Hello.Views.index)
+    get "/" (htmlView Index.Views.index)
     get "/index.html" (redirectTo false "/")
     get "/default.html" (redirectTo false "/")
     get "/signin-github" (redirectTo false "/members-only")

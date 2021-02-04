@@ -3,7 +3,6 @@ module UserViews
 
 open Giraffe.GiraffeViewEngine
 
-
 module AdminPage =
     let view = [
         h1 [] [rawText "I'm admin"]

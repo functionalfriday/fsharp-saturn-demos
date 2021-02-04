@@ -1,4 +1,4 @@
-namespace Hello
+namespace Index
 
 open Giraffe.GiraffeViewEngine
 
