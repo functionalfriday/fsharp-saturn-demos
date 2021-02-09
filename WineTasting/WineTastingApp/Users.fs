@@ -4,6 +4,7 @@ open Saturn
 open Giraffe
 open System.Security.Claims
 
+// snippet from https://gist.github.com/Krzysztof-Cieslak/5b53a1ff47edf5d323d788cce4913934
 let matchUpUsers : HttpHandler = fun next ctx ->
     // A real implementation would match up user identities with something stored in a database
     let isAdmin =
