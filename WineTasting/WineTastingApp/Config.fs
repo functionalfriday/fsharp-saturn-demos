@@ -23,8 +23,8 @@ type Config = {
 let config = {
     url = "https://localhost:5000/"
     github = {
-        clientId = "2dfd0060878f3db64d90"
-        clientSecret = "df1465798ffc37075bf16f6a92c8688d818eaa36"
+        clientId = "437816def3facd7c4684"
+        clientSecret = "cf775fc2b347c2117519f980a373a19abe04face"
         callbackPath = "/signin-github"
     }
     claimActions = {
