@@ -1,5 +1,10 @@
 # Notes...
 
+## TODOs
+
+- use `FsConfig` so we don't have to hardcode credentials and secrets.
+- remove claimsMapping?
+
 ## 2021-02-09
 
 - `Program.fs`: Basic application configurations

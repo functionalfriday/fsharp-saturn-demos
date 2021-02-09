@@ -8,8 +8,21 @@ type GithubConfig = {
 }
 
 type ClaimActions = {
-    /// This defines which properties from Github we (this application) want to have access to and how they are mapped.
-    /// See ASP.NET `ClaimActions.MapJsonKey` for details. 
+    /// This defines the mapping between
+    /// 
+    ///   Claims "properties" provided by the OAuth counterpart (here: GitHub) and
+    ///   property names we want to use internally.
+    /// 
+    /// Example:
+    /// 
+    /// GitHub "login" -> Our property name "githubUsername"
+    /// GitHub "name" -> Our property name "fullName"
+    /// 
+    /// See ASP.NET `ClaimActions.MapJsonKey` for other examples.
+    ///
+    /// IMHO this mapping is optional as long as the OAuth provider (here: GitHub) uses
+    /// standard names.
+    /// TODO Clarify if claims mapping is really needed for our use-case
     claims : (string * string) list
 }
 
