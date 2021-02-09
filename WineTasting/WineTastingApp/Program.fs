@@ -24,6 +24,7 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
     /// but fails when started from location of *.sln file
     use_static "static" 
     
+    /// TODO Howto include logging in other parts of the application?
     logging configureLog
 
     force_ssl
