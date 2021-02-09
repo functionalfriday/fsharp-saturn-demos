@@ -9,7 +9,8 @@ let matchUpUsers : HttpHandler = fun next ctx ->
     // A real implementation would match up user identities with something stored in a database
     let isAdmin =
         ctx.User.Claims |> Seq.exists (fun claim ->
-            claim.Issuer = "GitHub" && claim.Type = ClaimTypes.Name && claim.Value = "Patrick Drechsler")
+            // NOTE: `claim.Type` must match the mapped type in Config.fs
+            claim.Issuer = "GitHub" && claim.Type = "fullName" && claim.Value = "Patrick Drechsler")
     if isAdmin then
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
