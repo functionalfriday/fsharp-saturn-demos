@@ -3,6 +3,7 @@
 ## TODOs
 
 - use `FsConfig` so we don't have to hardcode credentials and secrets.
+- maybe combine with `use_config` in `application` CE in `Program.fs`? See default Saturn template for usage example...
 - remove claimsMapping?
 
 ## 2021-02-09
