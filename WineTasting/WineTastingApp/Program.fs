@@ -1,9 +1,26 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
+open System
+open System.IO
 open Saturn
 open Microsoft.Extensions.Logging
 open Config
+open FsConfig
+open Microsoft.Extensions.Configuration
 
+let appConfig =
+    let b = ConfigurationBuilder()
+    b.SetBasePath(Directory.GetCurrentDirectory() + "../../../../")
+        .AddJsonFile("appsettings.json")
+        .Build()
+    |> AppConfig
+
+let config =
+    let appSettings = appConfig.Get<AppSettings> ()
+    match appSettings with
+    | Ok x -> x
+    | _ -> raise (Exception ("ups: could not parse config file"))
+    
 let endpointPipe = pipeline {
     plug head
     plug requestId
@@ -14,7 +31,7 @@ let configureLog = fun (logConfig : ILoggingBuilder) ->
 
 let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
     pipe_through endpointPipe
-    url config.url
+    url config.Url
     use_router (Router.browserRouter)
     use_developer_exceptions
     memory_cache
@@ -29,8 +46,13 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
 
     force_ssl
         
-    use_github_oauth config.github.clientId config.github.clientSecret config.github.callbackPath config.claimActions.claims 
+    use_github_oauth
+        config.MyConfigs.GitHub.ClientId
+        config.MyConfigs.GitHub.ClientSecret
+        config.MyConfigs.GitHub.CallbackPath
+        [] 
 }
+
 
 [<EntryPoint>]
 let main argv =
