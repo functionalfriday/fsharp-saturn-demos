@@ -10,16 +10,14 @@ open Microsoft.Extensions.Configuration
 
 let appConfig =
     let b = ConfigurationBuilder()
-    // TODO Fix base path. Maybe copy json to output
-    b.SetBasePath(Directory.GetCurrentDirectory() + "../../../../")
+    b.SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("appsettings.json")
         .Build()
     |> AppConfig
 
 let secretConfig =
     let b = ConfigurationBuilder()
-    // TODO Fix base path. Maybe copy json to output
-    b.SetBasePath(Directory.GetCurrentDirectory() + "../../../../")
+    b.SetBasePath(Directory.GetCurrentDirectory())
         .AddJsonFile("secrets.json")
         .Build()
     |> AppConfig
