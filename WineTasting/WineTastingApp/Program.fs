@@ -66,7 +66,6 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
         secret.GithubSecret
         config.MyConfigs.GitHub.CallbackPath
         [("login", "githubUsername"); ("name", "fullName")]   
-      
 }
 
 
