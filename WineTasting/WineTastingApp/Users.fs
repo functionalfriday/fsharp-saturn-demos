@@ -12,8 +12,6 @@ let matchUpUsers : HttpHandler = fun next ctx ->
     let isAdmin =
         ctx.User.Claims |> Seq.exists (fun claim ->
             // NOTE: `claim.Type` must match the mapped type in Config.fs
-            let logger = ctx.GetLogger("FOOLogger")
-            logger.Log(LogLevel.Error, "xxxxxxxxxxxxxxxxxxxxxxxxx")
             claim.Issuer = "GitHub" && claim.Type = "fullName" && claim.Value = "Patrick Drechsler")
     if isAdmin then
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
