@@ -2,9 +2,19 @@
 
 ## TODOs
 
-- use `FsConfig` so we don't have to hardcode credentials and secrets.
 - maybe combine with `use_config` in `application` CE in `Program.fs`? See default Saturn template for usage example...
 - remove claimsMapping?
+
+## 2021-02-12
+
+- We managed to move all hardcoded config values to config files. We can read these config files using [FsConfig](https://github.com/demystifyfp/FsConfig).
+- We also split config files into 
+  - `appsettings.json` -> git
+  - `secrets.json` -> will be added to `.gitignore` in the future. This file contains secrets/credentials/etc which will not be included in git
+
+## TODOs
+
+- use `FsConfig` so we don't have to hardcode credentials and secrets.
 
 ## 2021-02-09
 
