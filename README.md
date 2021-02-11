@@ -14,3 +14,6 @@ THIS STATE is not normal:
 - official dotnet templates are crap for dotnet5 (and dotnet core 3)
 - we don't want to use fake/paket: we are using nuget with rider & linux
 
+## Demo app
+
+See [README](WineTasting/WineTastingApp/README.md) for details.
