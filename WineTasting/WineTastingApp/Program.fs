@@ -10,8 +10,17 @@ open Microsoft.Extensions.Configuration
 
 let appConfig =
     let b = ConfigurationBuilder()
+    // TODO Fix base path. Maybe copy json to output
     b.SetBasePath(Directory.GetCurrentDirectory() + "../../../../")
         .AddJsonFile("appsettings.json")
+        .Build()
+    |> AppConfig
+
+let secretConfig =
+    let b = ConfigurationBuilder()
+    // TODO Fix base path. Maybe copy json to output
+    b.SetBasePath(Directory.GetCurrentDirectory() + "../../../../")
+        .AddJsonFile("secrets.json")
         .Build()
     |> AppConfig
 
@@ -20,6 +29,12 @@ let config =
     match appSettings with
     | Ok x -> x
     | _ -> raise (Exception ("ups: could not parse config file"))
+
+let secret =
+    let appSettings = secretConfig.Get<SecretSettings> ()
+    match appSettings with
+    | Ok x -> x
+    | Error e -> raise (Exception (e.ToString()))
     
 let endpointPipe = pipeline {
     plug head
@@ -48,9 +63,10 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
         
     use_github_oauth
         config.MyConfigs.GitHub.ClientId
-        config.MyConfigs.GitHub.ClientSecret
+        secret.GithubSecret
         config.MyConfigs.GitHub.CallbackPath
-        [] 
+        [("login", "githubUsername"); ("name", "fullName")]   
+      
 }
 
 

@@ -12,7 +12,6 @@ type Logging = {
 
 type GitHub = {
     ClientId: string
-    ClientSecret: string
     CallbackPath : string
 }
 
@@ -24,4 +23,8 @@ type AppSettings = {
     Url : string
     Logging : Logging
     MyConfigs : MyConfigs
+}
+
+type SecretSettings = {
+    GithubSecret : string
 }
