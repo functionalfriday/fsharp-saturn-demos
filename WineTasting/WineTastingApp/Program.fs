@@ -1,5 +1,6 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
+open Db
 open System
 open System.IO
 open Saturn
@@ -69,5 +70,6 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
 
 [<EntryPoint>]
 let main argv =
-    run app
+    Db.createDb
+//    run app
     0 // return an integer exit code
