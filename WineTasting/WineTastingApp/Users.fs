@@ -17,9 +17,29 @@ let matchUpUsers : HttpHandler = fun next ctx ->
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
 
+type GitUser = { githubName : string; name : string }
+
+let saveUser : HttpHandler = fun next ctx ->
+    let claims = ctx.User.Claims
+    let result =
+        claims
+        |> Seq.map (fun x -> (x.Type, x.Value))
+        |> Map.ofSeq  
+    
+    let fullNameOpt = result |> Map.tryFind "fullName"
+    let githubNameOpt = result |> Map.tryFind "githubUsername"
+    let logger = ctx.GetLogger("FooLogger")
+        
+    let dbResult = Option.map2 (Db.save logger) fullNameOpt githubNameOpt  
+    
+    
+    
+    next ctx
+
 let loggedIn = pipeline {
     requires_authentication (Auth.challenge "GitHub")
     plug matchUpUsers
+    plug saveUser
 }
 
 let error: HttpHandler = RequestErrors.forbidden (text "Must be admin")

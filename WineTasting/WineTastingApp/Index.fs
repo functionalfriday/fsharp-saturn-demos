@@ -6,7 +6,7 @@ module Views =
   let index =
     div [] [
         h2 [] [rawText "Hello from Saturn!"]
-        a [ _href "https://google.de" ] [ encodedText "todo" ]
+        a [ _href "/members-only" ] [ encodedText "Login" ]
     ]
     
   let about =

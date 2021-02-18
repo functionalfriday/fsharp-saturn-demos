@@ -70,6 +70,6 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
 
 [<EntryPoint>]
 let main argv =
-    Db.createDb
-//    run app
+//    Db.createDb
+    run app
     0 // return an integer exit code
