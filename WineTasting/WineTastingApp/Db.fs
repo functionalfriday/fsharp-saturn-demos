@@ -16,11 +16,11 @@ let connectionStringFile = sprintf "Data Source=%s;Version=3;" databaseFilename
 SQLiteConnection.CreateFile(databaseFilename)
 
 // Open connection
-
+let connection = new SQLiteConnection(connectionStringFile)
 
 
 let createDb =
-    let connection = new SQLiteConnection(connectionStringFile)
+//    let connection = new SQLiteConnection(connectionStringFile)
     connection.Open()
 
     // Create table structure
@@ -44,7 +44,6 @@ let save (logger: ILogger) fullName ghName  : Result<string, string> =
     
     logger.LogInformation("starting save...")
     
-    let connection = new SQLiteConnection(connectionStringFile)
     connection.Open()
     
     logger.LogInformation("1")
