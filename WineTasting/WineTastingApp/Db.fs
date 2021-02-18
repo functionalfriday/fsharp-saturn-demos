@@ -1,13 +1,11 @@
 module Db
 
-open System
-open System.Collections.Generic
 open System.Data.SQLite
 open Dapper
 
 type User = {
     UserId : string
-    GithubId : string
+    GithubUserName : string
     Name : string
 }
 
@@ -34,7 +32,7 @@ let createDb =
         "insert into Users(UserId, GithubId, Name) " + 
         "values (@userId, @githubId, @name)"
          
-    [{ UserId = "123"; GithubId = "456"; Name = "Homer Simpson" }]
+    [{ UserId = "123"; GithubUserName = "homer"; Name = "Homer Simpson" }]
     |> List.map (fun x -> connection.Execute(insertDummyUser, x))
     |> List.sum
     |> (fun recordsAdded -> printfn "Records added  : %d" recordsAdded)
