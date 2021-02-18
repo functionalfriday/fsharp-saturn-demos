@@ -2,6 +2,31 @@
 
 ## TODOs
 
+cleanup...
+
+## 2021-02-18 "Database"
+
+We started adding persistence to the application.
+
+We did some research, and decided not to use TypeProviders, because most are not ready for linux/dotnet5.
+
+We also decided against anything too fancy.
+
+The following articles, although from 2017, work out-of-the-box with linux/dotnet5:
+
+- https://www.codesuji.com/2017/07/28/F-and-SQLite/
+- https://www.codesuji.com/2017/07/29/F-and-Dapper/
+
+We also integrated the DB into the web application: 
+Currently everybody who logs into the "members-only" area with Github OAuth will be stored in the Sqlite DB.
+
+There is one improvement in our code when comparing it to the original blog post from 2017:
+Since F# now has anonymous records (the `{| prop1 = value1 |}` syntax) the boxing described in the original post is not needed anymore.
+
+And yes: the current state is very procedural, but we wanted to understand how to access a DB (here: sqlite) first...
+
+## TODOs
+
 - maybe combine with `use_config` in `application` CE in `Program.fs`? See default Saturn template for usage example...
 - remove claimsMapping?
 
