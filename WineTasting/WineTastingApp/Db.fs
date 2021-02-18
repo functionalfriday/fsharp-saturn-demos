@@ -8,6 +8,7 @@ open Dapper
 type User = {
     UserId : string
     GithubId : string
+    Name : string
 }
 
 let createDb =
@@ -24,16 +25,16 @@ let createDb =
 
     // Create table structure
     let structureSql =
-        "create table Users (UserId text, GithubId text)"
+        "create table Users (UserId text, GithubId text, Name text)"
 
     let structureCommand = new SQLiteCommand(structureSql, connection)
     structureCommand.ExecuteNonQuery() |> ignore
     
     let insertDummyUser =
-        "insert into Users(UserId, GithubId) " + 
-        "values (@userId, @githubId)"
+        "insert into Users(UserId, GithubId, Name) " + 
+        "values (@userId, @githubId, @name)"
          
-    [{ UserId = "123"; GithubId = "456" }]
+    [{ UserId = "123"; GithubId = "456"; Name = "Homer Simpson" }]
     |> List.map (fun x -> connection.Execute(insertDummyUser, x))
     |> List.sum
     |> (fun recordsAdded -> printfn "Records added  : %d" recordsAdded)
