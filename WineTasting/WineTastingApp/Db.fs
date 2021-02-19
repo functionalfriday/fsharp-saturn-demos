@@ -4,6 +4,7 @@ open System.Data.SQLite
 open Dapper
 open Microsoft.Extensions.Logging
 
+/// Assumption: `GithubUserName` is unique across github -> can be our "primary key"
 type User = {
     GithubUserName : string
     Name : string
@@ -20,10 +21,10 @@ let connection = new SQLiteConnection(connectionStringFile)
 
 
 let createDb =
-//    let connection = new SQLiteConnection(connectionStringFile)
     connection.Open()
 
     // Create table structure
+    // TODO Maybe add Primary Key attribute to `GithubUserName` column? Does Sqlite support this?
     let structureSql =
         "create table Users (GithubUserName text, Name text)"
 
@@ -41,7 +42,6 @@ let createDb =
     connection.Close()
     
 let save (logger: ILogger) fullName ghName  : Result<string, string> =
-    
     logger.LogInformation("starting save...")
     
     connection.Open()
@@ -71,5 +71,3 @@ let save (logger: ILogger) fullName ghName  : Result<string, string> =
         logger.LogInformation("7")
         connection.Close()
         Ok (i.ToString())
-        
-    

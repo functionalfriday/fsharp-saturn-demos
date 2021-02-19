@@ -1,7 +1,5 @@
 module Users
 
-open Config
-open Microsoft.Extensions.Logging
 open Saturn
 open Giraffe
 open System.Security.Claims
@@ -17,23 +15,19 @@ let matchUpUsers : HttpHandler = fun next ctx ->
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
 
-type GitUser = { githubName : string; name : string }
-
 let saveUser : HttpHandler = fun next ctx ->
     let claims = ctx.User.Claims
-    let result =
+    let claimsMap =
         claims
-        |> Seq.map (fun x -> (x.Type, x.Value))
+        |> Seq.map (fun claim -> (claim.Type, claim.Value))
         |> Map.ofSeq  
     
-    let fullNameOpt = result |> Map.tryFind "fullName"
-    let githubNameOpt = result |> Map.tryFind "githubUsername"
+    let fullNameOpt = claimsMap |> Map.tryFind "fullName"
+    let githubNameOpt = claimsMap |> Map.tryFind "githubUsername"
     let logger = ctx.GetLogger("FooLogger")
-        
+    
+    // NOTE: error handling with dbResult possible...        
     let dbResult = Option.map2 (Db.save logger) fullNameOpt githubNameOpt  
-    
-    
-    
     next ctx
 
 let loggedIn = pipeline {

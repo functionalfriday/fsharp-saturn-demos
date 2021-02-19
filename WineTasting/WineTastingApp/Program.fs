@@ -1,6 +1,5 @@
 ﻿// Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
-open Db
 open System
 open System.IO
 open Saturn
@@ -55,7 +54,6 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
     /// but fails when started from location of *.sln file
     use_static "static" 
     
-    /// TODO Howto include logging in other parts of the application?
     logging configureLog
 
     force_ssl
@@ -68,6 +66,8 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
 }
 
 
+/// Initialize DB: only execute `Db.createDb` and comment `run app`.
+/// Once the DB exists: only execute `run app` and comment `Db.createDb`
 [<EntryPoint>]
 let main argv =
 //    Db.createDb
