@@ -2,7 +2,6 @@ module Db
 
 open System.Data.SQLite
 open Dapper
-open Microsoft.Extensions.Logging
 
 /// Assumption: `GithubUserName` is unique across github -> can be our "primary key"
 type User = {
@@ -18,7 +17,6 @@ SQLiteConnection.CreateFile(databaseFilename)
 
 // Open connection
 let connection = new SQLiteConnection(connectionStringFile)
-
 
 let createDb =
     connection.Open()
@@ -41,33 +39,25 @@ let createDb =
     |> (fun recordsAdded -> printfn "Records added  : %d" recordsAdded)
     connection.Close()
     
-let save (logger: ILogger) fullName ghName  : Result<string, string> =
-    logger.LogInformation("starting save...")
+let isKnownUser (connection : SQLiteConnection)  githubName : bool =
+    
+    let sql = "select count(*) from Users where GithubUserName = @githubName"
+    let cnt = connection.ExecuteScalar<int>(sql, {| githubName = githubName |})
+    cnt > 0
+    
+
+let save (user : User) : unit =
     
     connection.Open()
-    
-    logger.LogInformation("1")
-    
-    let countUsersWithGithubName ghName : int =
-        logger.LogInformation("2")
-        let sql = "select count(*) from Users where GithubUserName = @ghName"
-        logger.LogInformation("3")
-        let cnt = connection.ExecuteScalar<int>(sql, {| ghName = ghName |})
-        logger.LogInformation("4")
-        cnt
-    
-    let isKnownUser = countUsersWithGithubName ghName > 0
-    
-    if isKnownUser then
-        connection.Close()
-        Ok "user already in db"
+  
+    if isKnownUser connection user.GithubUserName then
+        ()
     else
-        logger.LogInformation("5")
+
         let insertUser =
             "insert into Users(GithubUserName, Name) " + 
-            "values (@ghName, @fullName)"
-        logger.LogInformation("6")
-        let i = connection.Execute (insertUser, {| ghName = ghName; fullName = fullName |})
-        logger.LogInformation("7")
-        connection.Close()
-        Ok (i.ToString())
+            "values (@GithubUserName, @Name)"
+
+        connection.Execute (insertUser, user) |> ignore
+
+    connection.Close()
