@@ -15,8 +15,15 @@ let matchUpUsers : HttpHandler = fun next ctx ->
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
 
+let createUser githubUserName name : Db.User = 
+    {
+        GithubUserName = githubUserName
+        Name           = name
+    }
+
 let saveUser : HttpHandler = fun next ctx ->
     let claims = ctx.User.Claims
+
     let claimsMap =
         claims
         |> Seq.map (fun claim -> (claim.Type, claim.Value))
@@ -24,10 +31,11 @@ let saveUser : HttpHandler = fun next ctx ->
     
     let fullNameOpt = claimsMap |> Map.tryFind "fullName"
     let githubNameOpt = claimsMap |> Map.tryFind "githubUsername"
-    let logger = ctx.GetLogger("FooLogger")
+
+    Option.map2 createUser githubNameOpt fullNameOpt
+    |> Option.map Db.save 
+    |> ignore
     
-    // NOTE: error handling with dbResult possible...        
-    let dbResult = Option.map2 (Db.save logger) fullNameOpt githubNameOpt  
     next ctx
 
 let loggedIn = pipeline {
