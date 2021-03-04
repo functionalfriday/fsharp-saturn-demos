@@ -3,10 +3,21 @@ module Db
 open System.Data.SQLite
 open Dapper
 
+type GitHubName =
+    GitHubName of string
+
+let createGitHubName s = GitHubName s
+
+let createUserName s = UserName s
+
+type UserName = 
+    | Set of string
+    | Emtpy of string option
+
 /// Assumption: `GithubUserName` is unique across github -> can be our "primary key"
 type User = {
-    GithubUserName : string
-    Name : string
+    GithubUserName : GitHubName
+    Name : UserName
 }
 
 let databaseFilename = "app.sqlite"
