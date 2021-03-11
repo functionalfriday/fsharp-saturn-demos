@@ -42,7 +42,7 @@ let saveUser : HttpHandler = fun next ctx ->
             |> Option.map createGitHubName
 
     Option.map (createUser usernameOpt) githubnameOpt 
-    |> Option.map Db.save 
+    |> Option.map Db.saveUser 
     |> ignore
     
     next ctx

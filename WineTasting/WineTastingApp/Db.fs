@@ -19,7 +19,8 @@ let createDb =
     // Create table structure
     // TODO Maybe add Primary Key attribute to `GithubUserName` column? Does Sqlite support this?
     let structureSql =
-        "create table Users (GithubUserName text, Name text)"
+        "create table Users (GithubUserName text, Name text);
+         create table Wines (WineId text, Name text, CreatedByGithubUserName text);"
 
     let structureCommand = new SQLiteCommand(structureSql, connection)
     structureCommand.ExecuteNonQuery() |> ignore
@@ -39,7 +40,17 @@ let isKnownUser (connection : SQLiteConnection) (GitHubName githubName) : bool =
     let cnt = connection.ExecuteScalar<int>(sql, {| githubName = githubName |})
     cnt > 0
 
-let save (user : User) : unit =
+(*
+    +--------+----------+-------------------------+
+    | WineId | WineName | CreatedByGithubUserName |
+    +--------+----------+-------------------------+
+
+    +--------+--------+----------------+
+    | Rating | WineId | GithubUserName | 
+    +--------+--------+----------------+
+*)
+
+let saveUser (user : User) : unit =
     connection.Open()
 
     let { User.GithubUserName = githubUserName; Name = name } = user
@@ -51,7 +62,6 @@ let save (user : User) : unit =
             "insert into Users(GithubUserName, Name) " + 
             "values (@GithubUserName, @Name)"
 
-        // TODO Code golf
         let nameForDb =
             match name with
             | Some s -> getFullNameValue s

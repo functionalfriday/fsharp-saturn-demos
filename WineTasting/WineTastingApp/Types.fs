@@ -10,8 +10,17 @@ type FullName =
 let createFullName s = FullName s
 let getFullNameValue (FullName s) = s
 
+type WineId =
+    WineId of System.Guid
+let createWineId s = WineId s
+let getWineIdValue (WineId s) = s
 
-/// Assumption: `GithubUserName` is unique across github -> can be our "primary key"
+type WineName =
+    WineName of string
+let createWineName s = WineName s
+let getWineNameValue (WineName s) = s
+
+// Assumption: `GithubUserName` is unique -> can be our "primary key"
 type User = {
     GithubUserName : GitHubName
     Name : FullName option
@@ -20,4 +29,16 @@ type User = {
 type UserForDb = {
     GithubUserName : string
     Name : string
+}
+
+type Wine = {
+    WineId : WineId
+    Name : WineName
+    CreatedByGithubUserName : GitHubName
+}
+
+type WineForDb = {
+    WineId : string
+    Name : string
+    CreatedByGithubUserName : string
 }
