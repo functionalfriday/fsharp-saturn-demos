@@ -14,6 +14,7 @@ type WineId =
     WineId of System.Guid
 let createWineId s = WineId s
 let getWineIdValue (WineId s) = s
+let getWineIdString (wineId : WineId) = (getWineIdValue wineId).ToString()
 
 type WineName =
     WineName of string
