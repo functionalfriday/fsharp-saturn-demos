@@ -3,6 +3,7 @@ module Users
 open Saturn
 open Giraffe
 open System.Security.Claims
+open Types
 
 // snippet from https://gist.github.com/Krzysztof-Cieslak/5b53a1ff47edf5d323d788cce4913934
 let matchUpUsers : HttpHandler = fun next ctx ->
@@ -15,7 +16,7 @@ let matchUpUsers : HttpHandler = fun next ctx ->
         ctx.User.AddIdentity(ClaimsIdentity([Claim(ClaimTypes.Role, "Admin", ClaimValueTypes.String, "MyApplication")]))
     next ctx
 
-let createUser githubUserName name  : Db.User = 
+let createUser (name : FullName option) (githubUserName : GitHubName) : User = 
     {
         GithubUserName = githubUserName
         Name           = name
@@ -30,18 +31,17 @@ let saveUser : HttpHandler = fun next ctx ->
         |> Seq.map (fun claim -> (claim.Type, claim.Value))
         |> Map.ofSeq  
     
-    let username = 
+    let usernameOpt = 
         claimsMap 
             |> Map.tryFind "fullName"
-            |> 
-
+            |> Option.map createFullName
     
-    let githubname = 
+    let githubnameOpt = 
         claimsMap 
             |> Map.tryFind "githubUsername" 
-            |> Option.map Db.createGitHubName
+            |> Option.map createGitHubName
 
-    Option.map2 createUser githubname username
+    Option.map (createUser usernameOpt) githubnameOpt 
     |> Option.map Db.save 
     |> ignore
     

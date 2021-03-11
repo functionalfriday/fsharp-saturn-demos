@@ -2,23 +2,7 @@ module Db
 
 open System.Data.SQLite
 open Dapper
-
-type GitHubName =
-    GitHubName of string
-
-let createGitHubName s = GitHubName s
-
-let createUserName s = UserName s
-
-type UserName = 
-    | Set of string
-    | Emtpy of string option
-
-/// Assumption: `GithubUserName` is unique across github -> can be our "primary key"
-type User = {
-    GithubUserName : GitHubName
-    Name : UserName
-}
+open Types
 
 let databaseFilename = "app.sqlite"
 let connectionStringFile = sprintf "Data Source=%s;Version=3;" databaseFilename  
@@ -44,31 +28,40 @@ let createDb =
         "insert into Users(GithubUserName, Name) " + 
         "values (@githubUserName, @name)"
          
-    [{ GithubUserName = "homer"; Name = "Homer Simpson" }]
+    [{ UserForDb.GithubUserName = "homer"; Name = "Homer Simpson" }]
     |> List.map (fun x -> connection.Execute(insertDummyUser, x))
     |> List.sum
     |> (fun recordsAdded -> printfn "Records added  : %d" recordsAdded)
     connection.Close()
     
-let isKnownUser (connection : SQLiteConnection)  githubName : bool =
-    
+let isKnownUser (connection : SQLiteConnection) (GitHubName githubName) : bool =
     let sql = "select count(*) from Users where GithubUserName = @githubName"
     let cnt = connection.ExecuteScalar<int>(sql, {| githubName = githubName |})
     cnt > 0
-    
 
 let save (user : User) : unit =
-    
     connection.Open()
-  
-    if isKnownUser connection user.GithubUserName then
+
+    let { User.GithubUserName = githubUserName; Name = name } = user
+
+    if isKnownUser connection githubUserName then
         ()
     else
-
         let insertUser =
             "insert into Users(GithubUserName, Name) " + 
             "values (@GithubUserName, @Name)"
 
-        connection.Execute (insertUser, user) |> ignore
+        // TODO Code golf
+        let nameForDb =
+            match name with
+            | Some s -> getFullNameValue s
+            | _ -> ""
+
+        let userForDb = {
+            UserForDb.GithubUserName = getGitHubNameValue githubUserName
+            Name = nameForDb 
+        }
+
+        connection.Execute (insertUser, userForDb) |> ignore
 
     connection.Close()

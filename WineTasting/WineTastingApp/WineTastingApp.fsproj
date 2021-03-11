@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Types.fs" />
         <Compile Include="Db.fs" />
         <Compile Include="Config.fs" />
         <Compile Include="Users.fs" />
