@@ -4,6 +4,14 @@
 
 cleanup...
 
+## 2021-03-11 "Add Wine object"
+
+We now have a basic understanding of how
+
+- data is loaded and stored with sqlite
+- and added a 2nd 'thing' ("Wine") to the app (and the db)
+- we replicated some code (don't generalize code until you've repeated it more than 3 times)
+
 ## 2021-02-18 "Database"
 
 We started adding persistence to the application.
