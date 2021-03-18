@@ -4,6 +4,17 @@
 
 cleanup...
 
+## 2021-03-18 
+
+We decided to split the project:
+
+- WineTastingCore
+- WineTastingWeb
+
+TODO fuer naechste Session?
+
+-> Giraffe View Engine
+
 ## 2021-03-11 "Add Wine object"
 
 We now have a basic understanding of how

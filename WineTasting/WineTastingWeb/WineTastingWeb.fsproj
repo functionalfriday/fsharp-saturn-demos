@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>WineTastingApp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="UserViews.fs" />
+        <Compile Include="Index.fs" />
+        <Compile Include="Router.fs" />
+        <Compile Include="Program.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.78" />
+      <PackageReference Include="FsConfig" Version="3.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+      <PackageReference Include="Saturn" Version="0.14.1" />
+      <PackageReference Include="Saturn.Extensions.Authorization" Version="0.14.1" />
+      <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="README.md" />
+      <Content Include="static\assets\mycustom.css">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <Content Include="appsettings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="secrets.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WineTastingCore\WineTastingCore.fsproj" />
+    </ItemGroup>
+</Project>

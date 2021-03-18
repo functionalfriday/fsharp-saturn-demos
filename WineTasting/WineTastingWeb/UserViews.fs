@@ -1,4 +1,3 @@
-
 module UserViews
 
 open Giraffe.GiraffeViewEngine

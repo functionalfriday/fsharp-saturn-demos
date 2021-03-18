@@ -1,19 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="Config.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="Db.fs" />
-        <Compile Include="Config.fs" />
         <Compile Include="Users.fs" />
-        <Compile Include="UserViews.fs" />
-        <Compile Include="Index.fs" />
-        <Compile Include="Router.fs" />
-        <Compile Include="Program.fs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -25,16 +20,4 @@
       <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Content Include="README.md" />
-      <Content Include="static\assets\mycustom.css">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <Content Include="appsettings.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-      <Content Include="secrets.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
 </Project>
