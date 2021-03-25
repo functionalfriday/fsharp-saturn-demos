@@ -4,6 +4,11 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WineTastingWeb", "WineTasti
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "WineTastingCore", "WineTastingCore\WineTastingCore.fsproj", "{18B3EE79-D877-4D92-9EED-4CFD7E62807F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{34D267F7-0087-4A4F-8178-4F54621596B6}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
