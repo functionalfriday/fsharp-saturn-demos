@@ -81,7 +81,6 @@ let createWine (wine : Wine) : unit =
     | Rating | WineId | GithubUserName | 
     +--------+--------+----------------+
 *)
-
 let saveUser (user : User) : unit =
     connection.Open()
 
@@ -107,3 +106,7 @@ let saveUser (user : User) : unit =
         connection.Execute (insertUser, userForDb) |> ignore
 
     connection.Close()
+
+let getAllWines =
+    let sql = "select WineId, Name, CreatedByGithubUserName from Wines"
+    connection.Query<WineForDb> sql

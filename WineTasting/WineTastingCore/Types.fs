@@ -38,6 +38,7 @@ type Wine = {
     CreatedByGithubUserName : GitHubName
 }
 
+[<CLIMutable>]
 type WineForDb = {
     WineId : string
     Name : string

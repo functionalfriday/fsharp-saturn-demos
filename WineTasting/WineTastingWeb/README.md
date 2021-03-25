@@ -1,10 +1,15 @@
 # Notes...
 
-## TODOs
+## TODO
 
-cleanup...
+- convert from DB-model to ViewModel
 
-## 2021-03-18 
+## 2021-03-25
+
+- add existing Wines table
+- make Wines from Db Dapper compatible vie CLIMutable
+
+## 2021-03-18
 
 We decided to split the project:
 
