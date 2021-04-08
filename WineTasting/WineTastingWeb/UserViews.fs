@@ -17,7 +17,7 @@ module UserPage =
         let oneWine wine = tr [] [rawText "wine!"]
 
         [
-            h1 [] [rawText "All wines"]
+            h1 [] [rawText "All existing wines"]
             table [] [
                 thead [] [
                     tr [] [th [] [rawText "first column"]]
@@ -27,6 +27,13 @@ module UserPage =
                         |> List.ofSeq
                         |> List.map oneWine
                     )
+            ]
+
+            form [_action "members-only/wine/add"; _method "POST"] [
+                label [_for "wine-name"] [rawText "Wine Name"]
+                input [_id "wine-name"; _type "text"; _required; _name "wine-name"]
+
+                button [_type "submit"] [rawText "Save wine"]
             ]
         ]
 

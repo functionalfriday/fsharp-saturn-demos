@@ -1,8 +1,11 @@
 # Notes...
 
 ## TODO
+- make POST to create new wine work - at the moment it returns a 404...
 
+## 2021-04-08
 - convert from DB-model to ViewModel
+- add Wine create form basics
 
 ## 2021-03-25
 
