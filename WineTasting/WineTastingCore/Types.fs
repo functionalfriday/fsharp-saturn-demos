@@ -27,6 +27,7 @@ type User = {
     Name : FullName option
 }
 
+[<CLIMutable>]
 type UserForDb = {
     GithubUserName : string
     Name : string

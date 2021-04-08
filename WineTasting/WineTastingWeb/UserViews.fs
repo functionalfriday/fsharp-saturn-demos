@@ -10,7 +10,7 @@ module AdminPage =
 
 module UserPage =
     let view = 
-        let wines = Users.getAllWines ()
+        let wines = Wines.getAllWines ()
 
         let oneWine wine = tr [] [rawText "wine!"]
 

@@ -60,9 +60,3 @@ let isAdmin = pipeline {
     requires_role "Admin" error
 }
 
-// NOTE: add `() : ...` so that it works (tip from Martin)
-let getAllWines () =
-    let wines = Db.getAllWines
-    wines
-    
-    

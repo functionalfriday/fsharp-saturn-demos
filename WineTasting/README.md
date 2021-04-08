@@ -7,7 +7,7 @@
 ## 2021-03-25
 
 - add existing Wines table
-- make Wines from Db Dapper compatible vie CLIMutable
+- make Wines from Db Dapper compatible via CLIMutable
 
 ## 2021-03-18
 

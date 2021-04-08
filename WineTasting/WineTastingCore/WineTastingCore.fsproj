@@ -9,6 +9,7 @@
         <Compile Include="Types.fs" />
         <Compile Include="Db.fs" />
         <Compile Include="Users.fs" />
+        <Compile Include="Wines.fs" />
     </ItemGroup>
 
     <ItemGroup>
