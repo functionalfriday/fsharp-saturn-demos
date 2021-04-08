@@ -71,9 +71,9 @@ let saveUser (user : User) : unit =
     | WineId | WineName | CreatedByGithubUserName |
     +--------+----------+-------------------------+
 *)
-let isKnownWine (connection : SQLiteConnection) (wineId : WineId) : bool =
+let isKnownWine (connection : SQLiteConnection) (wineId : string) : bool =
     let sql = "select count(*) from Wines where WineId = @wineId"
-    let cnt = connection.ExecuteScalar<int>(sql, {| wineId = getWineIdString wineId |})
+    let cnt = connection.ExecuteScalar<int>(sql, {| wineId = wineId |})
     cnt > 0
 
 (*
@@ -81,28 +81,17 @@ let isKnownWine (connection : SQLiteConnection) (wineId : WineId) : bool =
     | Rating | WineId | GithubUserName | 
     +--------+--------+----------------+
 *)
-let createWine (wine : Wine) : unit =
+let createWine (wine : WineForDb) : unit =
     connection.Open()
 
-    let { Wine.CreatedByGithubUserName = githubUserName; Name = name; WineId = wineId } = wine
-
-    if isKnownWine connection wineId then
+    if isKnownWine connection wine.WineId then
         ()
     else
         let insert =
             "insert into Wines(WineId, Name, CreatedByGithubUserName) " + 
             "values (@WineId, @Name, @CreatedByGithubUserName)"
-
-        let (GitHubName githubUserName) = githubUserName
-        let (WineName nameForDb) = name
-
-        let wineForDb = {
-            WineForDb.CreatedByGithubUserName = githubUserName
-            Name = nameForDb 
-            WineId = wineId |> getWineIdString
-        }
-
-        connection.Execute (insert, wineForDb) |> ignore
+        
+        connection.Execute (insert, wine) |> ignore
 
     connection.Close()
 

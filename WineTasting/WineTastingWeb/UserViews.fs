@@ -1,6 +1,8 @@
 module UserViews
 
 open Giraffe.GiraffeViewEngine
+open System.Collections.Generic
+open Types
 
 module AdminPage =
     let view = [
@@ -10,7 +12,7 @@ module AdminPage =
 
 module UserPage =
     let view = 
-        let wines = Wines.getAllWines ()
+        let wines : IEnumerable<Wine> = Wines.getAllWines ()
 
         let oneWine wine = tr [] [rawText "wine!"]
 
