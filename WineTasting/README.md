@@ -1,6 +1,8 @@
 # Notes...
 
 ## TODO
+
+- currently the database is copied (!) from main folder to bin/Debug/net5... This is stupid -> fix
 - make POST to create new wine work - at the moment it returns a 404...
 
 ## 2021-04-15

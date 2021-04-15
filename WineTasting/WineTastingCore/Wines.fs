@@ -1,7 +1,6 @@
 module Wines
 
 open Types
-open System.Collections.Generic
 
 let getAllWines () : Wine seq =
     let convertWine (w : WineForDb) : Wine =

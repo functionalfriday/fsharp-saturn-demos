@@ -29,8 +29,8 @@ module UserPage =
             ]
 
             form [_action "members-only/wine"; _method "POST"] [
-                label [_for "wine-name"] [rawText "Wine Name"]
-                input [_id "wine-name"; _type "text"; _required; _name "wine-name"]
+                label [_for "WineName"] [rawText "Wine Name"]
+                input [_id "WineName"; _type "text"; _required; _name "WineName"]
 
                 button [_type "submit"] [rawText "Save wine"]
             ]
