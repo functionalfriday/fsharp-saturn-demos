@@ -1,7 +1,6 @@
 module UserViews
 
 open Giraffe.GiraffeViewEngine
-open System.Collections.Generic
 open Types
 
 module AdminPage =
@@ -29,7 +28,7 @@ module UserPage =
                     )
             ]
 
-            form [_action "members-only/wine/add"; _method "POST"] [
+            form [_action "members-only/wine"; _method "POST"] [
                 label [_for "wine-name"] [rawText "Wine Name"]
                 input [_id "wine-name"; _type "text"; _required; _name "wine-name"]
 
