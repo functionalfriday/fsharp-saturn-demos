@@ -3,6 +3,10 @@
 ## TODO
 - make POST to create new wine work - at the moment it returns a 404...
 
+## 2021-04-15
+
+- NOTE: the database 'app.sqlite' is located in `bin/Debug/net5.0/` !
+
 ## 2021-04-08
 - convert from DB-model to ViewModel
 - add Wine create form basics
