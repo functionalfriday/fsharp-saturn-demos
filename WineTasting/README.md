@@ -6,6 +6,7 @@
 
 ## 2021-04-15
 
+- create new wine from website using saturn controller works (proof-of-concept)
 - NOTE: the database 'app.sqlite' is located in `bin/Debug/net5.0/` !
 
 ## 2021-04-08
