@@ -17,6 +17,6 @@
 
 For learning we will use `WineTasting` as "Domain".
 
-See [README](WineTasting/WineTastingApp/README.md) for details. That file is a mix between ADRs and
+See [README](WineTasting/README.md) for details. That file is a mix between ADRs and
 CHANGELOGS and ... ;-)
 
