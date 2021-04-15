@@ -3,7 +3,7 @@ module Wines
 open Types
 open System.Collections.Generic
 
-let getAllWines () : IEnumerable<Wine> =
+let getAllWines () : Wine seq =
     let convertWine (w : WineForDb) : Wine =
         {
             Wine.WineId = createWineId <| System.Guid.Parse(w.WineId)
