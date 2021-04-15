@@ -24,7 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="README.md" />
       <Content Include="static\assets\mycustom.css">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
