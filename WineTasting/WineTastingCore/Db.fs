@@ -5,7 +5,7 @@ open Dapper
 open Types
 
 let databaseFilename = "app.sqlite"
-let connectionStringFile = sprintf "Data Source=%s;Version=3;" databaseFilename  
+let connectionStringFile = $"Data Source=%s{databaseFilename};Version=3;"  
 
 // Create database
 SQLiteConnection.CreateFile(databaseFilename)
@@ -32,7 +32,7 @@ let createDb =
     [{ UserForDb.GithubUserName = "homer"; Name = "Homer Simpson" }]
     |> List.map (fun x -> connection.Execute(insertDummyUser, x))
     |> List.sum
-    |> (fun recordsAdded -> printfn "Records added  : %d" recordsAdded)
+    |> (fun recordsAdded -> printfn $"Records added  : %d{recordsAdded}")
     connection.Close()
     
 let isKnownUser (connection : SQLiteConnection) (GitHubName githubName) : bool =
