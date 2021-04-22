@@ -4,6 +4,16 @@
 
 - currently the database is copied (!) from main folder to bin/Debug/net5... This is stupid -> fix
 
+## 2021-04-21
+
+we didn't write a single line of code
+
+where should we store our data?
+
+We spent a lot of time talking about configuration stuff.
+
+We didn't decide yet.
+
 ## 2021-04-15
 
 - create new wine from website using saturn controller works (proof-of-concept)
