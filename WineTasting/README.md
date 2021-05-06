@@ -2,6 +2,13 @@
 
 ## TODO
 
+Ideas for going to the cloud ("terraform")
+
+- Simplest solution: sqlite in same container as actual program.
+  - no data will be persisted, but for demo purposes this is ok as a first step.
+- Add health check to application
+- Next step: use a real database.
+
 ## 2021-05-06
 
 - app.sqlite database is not copied to bin/Debug/... anymore.
