@@ -33,6 +33,7 @@
       <Content Include="secrets.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <Content Include="app.sqlite" />
     </ItemGroup>
 
     <ItemGroup>

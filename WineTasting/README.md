@@ -2,7 +2,10 @@
 
 ## TODO
 
-- currently the database is copied (!) from main folder to bin/Debug/net5... This is stupid -> fix
+## 2021-05-06
+
+- app.sqlite database is not copied to bin/Debug/... anymore.
+- Instead the app.sqlite file is located in WineTastingWeb base folder.
 
 ## 2021-04-21
 

@@ -1,14 +1,17 @@
 module Db
 
+open System
 open System.Data.SQLite
 open Dapper
 open Types
 
 let databaseFilename = "app.sqlite"
-let connectionStringFile = $"Data Source=%s{databaseFilename};Version=3;"  
+let baseFolder = "../../.." // TODO maybe replace with something like `AppDomain.CurrentDomain.BaseDirectory`?
+let dbFile = $"%s{baseFolder}/%s{databaseFilename}"
+let connectionStringFile = $"Data Source=%s{dbFile};Version=3;"  
 
 // Create database
-SQLiteConnection.CreateFile(databaseFilename)
+SQLiteConnection.CreateFile(dbFile)
 
 // Open connection
 let connection = new SQLiteConnection(connectionStringFile)
