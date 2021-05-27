@@ -9,6 +9,24 @@ Ideas for going to the cloud ("terraform")
 - Add health check to application
 - Next step: use a real database.
 
+## 2021-05-28
+
+Goal: Every participant should be able to run the F# project.
+
+- option 1: install dotnet core native on each participant's machine
+- option 2: create a docker container which includes the dotnet sdk & runtime, so that every developer can start working right away.
+
+We tried option 2.
+
+Option 2 also has different sub-options:
+
+- option 2a: VS-Code focused: VS-Code has so-called "dev-containers"
+- option 2b: IDE independent docker containers ("hand-crafted")
+
+We tried option 2a.
+
+It almost worked, but we ran into issues with relative paths having the wrong root. Maybe similar to https://github.com/dotnet/project-system/issues/3619
+
 ## 2021-05-06
 
 - app.sqlite database is not copied to bin/Debug/... anymore.
