@@ -9,6 +9,15 @@ Ideas for going to the cloud ("terraform")
 - Add health check to application
 - Next step: use a real database.
 
+## 2021-06-24
+
+Goal: Import a new list of wines via web form. And using applicative validation.
+
+We managed to:
+
+- do the html stuff for importing (giraffe/saturn documentation still sucks)
+- started applicative validation using FSharpPlus
+
 ## 2021-05-28
 
 Goal: Every participant should be able to run the F# project.
