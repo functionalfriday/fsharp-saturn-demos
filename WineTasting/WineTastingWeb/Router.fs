@@ -6,6 +6,7 @@ open Giraffe.ResponseWriters
 open UserViews
 open Users
 open Controllers
+open ImportWinesViews
 
 let browser = pipeline {
     plug acceptHtml
@@ -26,6 +27,7 @@ let loggedInView = router {
 
     get "" (htmlView UserPage.layout)
     get "/admin" (isAdmin >=> htmlView AdminPage.layout)
+    get "/bulk-import" (htmlView ImportWinesViews.view)
 
     forward "/wine" wineController
 }

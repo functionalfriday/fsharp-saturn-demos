@@ -34,6 +34,8 @@ module UserPage =
 
                 button [_type "submit"] [rawText "Save wine"]
             ]
+
+            a [_href "members-only/bulk-import"] [rawText "Import wines"]
         ]
 
     let layout =
