@@ -30,6 +30,7 @@ let loggedInView = router {
     get "/bulk-import" (htmlView ImportWinesViews.view)
 
     forward "/wine" wineController
+    forward "/bulk-import" importWinesController
 }
 
 let browserRouter = router {

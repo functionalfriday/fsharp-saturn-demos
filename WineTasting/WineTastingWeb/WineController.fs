@@ -15,6 +15,9 @@ let createId () = Guid.NewGuid()
 [<CLIMutable>]
 type WineNameForm = { WineName : string }
 
+[<CLIMutable>]
+type WineNamesForm = { WineNames : string }
+
 let createNewWineFromContext (ctx: HttpContext) =
     // NOTE: There is probably a more elegant way to get the current user's GithubUsername ;-)
     let githubUsernameClaim = ctx.User.Claims |> Seq.find (fun x -> x.Type = "githubUsername")
@@ -30,11 +33,20 @@ let createNewWineFromContext (ctx: HttpContext) =
     //      - `return`:  wraps the return value
     task {
         let! formValue = getForm<WineNameForm> ctx
-        return createWine {
+        return createWineInDb {
             Wine.WineId = WineId (createId ())
             Name = WineName formValue.WineName
             CreatedByGithubUserName = GitHubName githubUsernameClaim.Value
         }
+    }
+
+let importWines (ctx: HttpContext) =
+    let githubUsernameClaim = ctx.User.Claims |> Seq.find (fun x -> x.Type = "githubUsername")
+
+    task {
+        let! formValue = getForm<WineNamesForm> ctx
+        let result = parseAndImportWines (GitHubName githubUsernameClaim.Value) formValue.WineNames
+        return result
     }
 
 let wineController = controller {
@@ -44,4 +56,8 @@ let wineController = controller {
     show (fun ctx id -> $"Show handler version 1 - %i{id}" |> Controller.text ctx) //Show details of a user
     //edit (fun ctx id -> (sprintf "Edit handler version 1 - %i" id) |> Controller.text ctx)  //Edit a user // "Show form for update"
     update (fun ctx id -> $"Update handler version 1 - %i{id}" |> Controller.text ctx)  //Update a user// this is the actual PUT command
+}
+
+let importWinesController = controller {
+    create (fun ctx -> importWines ctx |> Controller.json ctx)
 }
