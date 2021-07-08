@@ -1,6 +1,6 @@
 module ImportWinesViews
 
-open Giraffe.GiraffeViewEngine
+open Giraffe.ViewEngine
 
 let view =
     div [] [
