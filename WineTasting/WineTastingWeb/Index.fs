@@ -1,6 +1,6 @@
 namespace Index
 
-open Giraffe.GiraffeViewEngine
+open Giraffe.ViewEngine
 
 module Views =
   let index =

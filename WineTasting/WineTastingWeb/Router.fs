@@ -2,7 +2,6 @@ module Router
 
 open Saturn
 open Giraffe.Core
-open Giraffe.ResponseWriters
 open UserViews
 open Users
 open Controllers

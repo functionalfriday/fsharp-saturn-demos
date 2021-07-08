@@ -1,6 +1,5 @@
 module Db
 
-open System
 open System.Data.SQLite
 open Dapper
 open Types
