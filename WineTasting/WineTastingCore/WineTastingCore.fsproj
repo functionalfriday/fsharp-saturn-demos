@@ -10,6 +10,7 @@
         <Compile Include="Db.fs" />
         <Compile Include="Users.fs" />
         <Compile Include="Wines.fs" />
+        <Compile Include="WineValidation.fs" />
     </ItemGroup>
 
     <ItemGroup>
