@@ -9,6 +9,23 @@ Ideas for going to the cloud ("terraform")
 - Add health check to application
 - Next step: use a real database.
 
+## 2021-09-09
+
+Brainstorming session. And some project infrastructure.
+
+We merged the validation branch. 
+
+It was interesting, because VSCode `devcontainers` were not as easy to use as advertised. 
+Our problem: GitHub started prohibiting https logins a while ago, requiring users to use ssh.
+Martins git setup in the `devcontainer` was relying on this feature (https credentials).
+
+We couldn't find a simple solution within 30min, so we decided to ditch the whole `devcontainers` approach.
+We also removed all `devcontainers` from the repository.
+
+Anybody depending on the `devcontainers` technology?
+
+Also merged the saturn upgrade branch (untested...).
+
 ## 2021-06-24
 
 Goal: Import a new list of wines via web form. And using applicative validation.
