@@ -10,11 +10,13 @@
         <Compile Include="Db.fs" />
         <Compile Include="Users.fs" />
         <Compile Include="Wines.fs" />
+        <Compile Include="WineValidation.fs" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.0.78" />
       <PackageReference Include="FsConfig" Version="3.0.0" />
+      <PackageReference Include="FSharpPlus" Version="1.2.0" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
       <PackageReference Include="Saturn" Version="0.14.1" />
       <PackageReference Include="Saturn.Extensions.Authorization" Version="0.14.1" />
