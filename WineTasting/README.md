@@ -9,6 +9,21 @@ Ideas for going to the cloud ("terraform")
 - Add health check to application
 - Next step: use a real database.
 
+## 2021-10-14
+
+With Frank's help we tried to publish the app to AWS Beanstalk.
+
+It didn't work.
+
+Deploying the "hello-world" provided by AWS works:
+https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/dotnet-linux-core-tutorial.html#dotnet-linux-core-tutorial-generate
+
+Possible TODOs:
+
+- Find out what the differences are between this app and the demo app
+- We also created a new c# web-api using `dotnet new webapi`, zipped the result, and uploaded it: doesn't work
+- More realistic TODO: containerize the app and deploy it
+
 ## 2021-09-09
 
 Brainstorming session. And some project infrastructure.
