@@ -58,6 +58,7 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
 
 //    force_ssl
         
+    // NOTE: the `use_github_oauth` function is part of the `application` CE
     use_github_oauth
         config.MyConfigs.GitHub.ClientId
         secret.GithubSecret
