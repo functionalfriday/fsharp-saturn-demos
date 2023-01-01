@@ -56,7 +56,7 @@ let app : Microsoft.Extensions.Hosting.IHostBuilder = application {
     
     logging configureLog
 
-    force_ssl
+//    force_ssl
         
     use_github_oauth
         config.MyConfigs.GitHub.ClientId
